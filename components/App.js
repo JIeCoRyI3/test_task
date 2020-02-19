@@ -1,7 +1,7 @@
 import '../styles/application.scss';
 import {connect} from '../services';
 import React, {PureComponent} from 'react';
-import Table from "./Table";
+import Table from './Table';
 
 // The below line is here as an example of getting prices
 connect('AAPL');
