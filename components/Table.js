@@ -3,6 +3,11 @@ import '../styles/application.scss';
 import PropTypes from 'prop-types';
 
 function Table(props) {
+    const date = props.res.last_trade_time.slice(0, 10);
+    const time = props.res.last_trade_time.slice(11, 19);
+    const animation = ' animated flash delay-2s';
+    let cls = Number(props.res.change) >= 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down';
+    cls += animation;
     return(
         <div>
             <h1>Table</h1>
@@ -21,10 +26,10 @@ function Table(props) {
                 <tr>
                     <th scope="row">1</th>
                     <td>{props.res.ticker}</td>
-                    <td>{props.res.price}</td>
-                    <td>{props.res.change}</td>
-                    <td>{props.res.change_percent}</td>
-                    <td>{props.res.last_trade_time}</td>
+                    <td>{props.res.price} <i className={cls}></i></td>
+                    <td>{props.res.change} <i className={cls}></i></td>
+                    <td>{props.res.change_percent} <i className={cls}></i></td>
+                    <td>{date[0] === 'T' ? props.res.last_trade_time : date + ' ' + time}</td>
                 </tr>
                 </tbody>
             </table>

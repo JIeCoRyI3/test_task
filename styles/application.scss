@@ -4,4 +4,18 @@
 
 .table{
   width: 80%;
+  margin: 10%;
+}
+
+.fa-arrow-circle-down{
+  color: red;
+}
+
+.fa-arrow-circle-up{
+  color: green;
+}
+
+.animated{
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
 }
