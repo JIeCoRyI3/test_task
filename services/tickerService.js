@@ -7,8 +7,8 @@ export const connect = (stockSymbol) => {
     socket.on('connect', () => {
         console.log('connected');
         socket.on(stockSymbol, (data) => {
-            console.log(data);
-            return data;
+
+
         });
 
         socket.emit('ticker', stockSymbol);

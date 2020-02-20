@@ -13,7 +13,16 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            response: false,
+            response: {
+                ticker: 'There will be ticker',
+                exchange: 'NASDAQ',
+                price: 'There will be price',
+                change: 'There will be change',
+                change_percent: 'There will be change percent',
+                last_trade_time: 'There will trade time',
+                dividend: '0.57',
+                yield: '1.96'
+            },
         };
     }
 
@@ -21,13 +30,12 @@ class App extends Component {
         this.socket = io('http://localhost:4000');
         this.socket.on('connect', () => {
             console.log('connected');
-            this.socket.on('', (data) => {
-                console.log('YES!!!!!');
-                this.setState({response: data});
+            this.socket.on('AAPL', (data) => {
+                this.setState({response: JSON.parse(data)});
                 console.log(this.state);
             });
 
-            this.socket.emit('ticker', '');
+            this.socket.emit('ticker', 'AAPL');
         });
 
         this.socket.on('disconnect', () => {
@@ -40,8 +48,7 @@ class App extends Component {
         return (
             <div className="stock-ticker">
                 <h1>Stock Blotter</h1>
-                {response}
-                <Table/>
+                <Table res={response}/>
             </div>
         );
     }
