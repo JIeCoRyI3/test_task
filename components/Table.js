@@ -10,7 +10,8 @@ class Table extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.res.price !== this.props.res.price) {
-            const change = nextProps.res.price - this.props.res.price;
+            let change = nextProps.res.price - this.props.res.price;
+            if(isNaN(change)) change = 0;
             this.setState({changes: change });
             // console.log( 'WOW!!!! ' + change);
         }
